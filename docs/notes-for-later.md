@@ -60,8 +60,41 @@ Belongs to: Q2 and Q3 in `research-questions.md`. Definitions come from the offi
 
 ---
 
-## 5. Other loose ends
+## 5. Draft answers to Q1–Q3 (to place in the final answers, not in the bivariate cells)
 
-- `Team_percentage` is stored as text with a "%" sign (`"11%"`). Convert it to float in the cleaning section (board #3). For now the univariate cell converts it locally with `.str.rstrip("%").astype(float)`.
+Collected from the bivariate analysis. Numbers use the cleaned data (`PP_Son` corrected). Women and men only: Non-binary (33) and Custom (8) are left out of these comparisons, and the notebook should say so. These are drafts: confirm each number against the notebook outputs before writing the final answer. Always show `n`, and remember the games are top-selling or top-rated, so the results describe successful games.
+
+### Q1. How much more are women sexualized than men, in what ways, and does it depend on the role?
+
+- **How much (answered so far):** 29 of 203 women (14.3%) have a score above 0, against 4 of 393 men (1.0%). That is about 14 times higher. Before the `PP_Son` fix it was 5 men (1.3%), about 11 times.
+- **Context:** only 34 of the 637 characters have a score above 0 (603 score 0), and nobody scores 4. The mean is misleading, so compare the share above 0. One Non-binary character is sexualized, and no Custom one.
+- **Still to do:**
+  - *In what ways:* rate of each of the four criteria (clothing, trophy, damsel, cutscenes) by gender, to see which one drives the gap.
+  - *Does it depend on the role:* repeat the comparison by `Relevance`, `Side`, `Age_range` and `Species`. Groups will be very small (only 33 sexualized women and men in total), so show `n` and avoid strong claims.
+
+### Q2. What roles do women hold: lead, playable, romantic interest?
+
+- **Roles (answered so far):** women are about 32% of characters but only 26.2% of protagonists (16 of 61) and 22.4% of main antagonists (11 of 49 women and men).
+- **Where women are well represented:** main characters (39.4%, 78 of 198), deuteragonists (44.4%, 8 of 18) and sidekicks (46.2%, 6 of 13). The last two are small groups.
+- **Within each gender:** 7.9% of women are protagonists against 11.5% of men; 38.4% of women are main characters against 30.5% of men; 41.4% against 44.0% are secondary characters.
+- **Not yet in the notebook (computed for these notes, to confirm):**
+  - *Playable:* 33 of 203 women (16.3%) against 72 of 393 men (18.3%), so the shares are close.
+  - *Romantic interest:* 31 of 203 women (15.3%; 14 `Yes` and 17 `Opt`) against 16 of 393 men (4.1%; 3 `Yes` and 13 `Opt`).
+- **Decision to make:** which definition of "lead" to use (see section 4): `PA` only, or `PA` + `DA` + `MC`.
+
+### Q3. Good vs. bad: are women allies, antagonists or main villains?
+
+- **Side (answered so far):** 75.4% of women are on the protagonist's side, against 61.3% of men.
+- **Antagonists:** 9.9% of women (20) against 27.7% of men (109). Women are only 15.5% of all antagonists, although they are 32% of the characters.
+- **Both sides:** 14.8% of women against 10.9% of men; women are 41.1% of this group (30 of 73). It is small, so read it with caution.
+- **Main villains:** 22.4% of the female and male main antagonists are women (11 of 49). With all 53 main antagonists, it is 11 of 53 (20.8%).
+- **Still to do:** sexualization by side is covered in Q1.
+
+---
+
+## 6. Other loose ends
+
+- **Stale comment in the notebook:** the Findings under *Gender & Sexualization* say women are "roughly 11 times" more sexualized. That was before the `PP_Son` fix. With 4 men (1.0%) instead of 5 (1.3%), it is about 14 times.
+- Done: `Team_percentage` is now converted to float in *Limpieza* (board #3), and the analysis cell uses it directly. Its leftover comment `# Convert "11%" -> 11.0` and the duplicate `games = tables["games"]` line can be deleted.
 - `Genre` has tiny groups (Simulation n=1, Interactive Story n=4). Decide later whether to group them as "Other" or leave them out of genre comparisons.
 - `Gender`: Non-binary (33) and Custom (8) are small. Decide later whether to show them separately or note them aside in Q1–Q3.
