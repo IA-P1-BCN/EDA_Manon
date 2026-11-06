@@ -4,7 +4,7 @@ What was missing, what we corrected, and what is still open and why. Evidence li
 
 **Scope:** 3 tables, `games` (64 rows), `characters` (637) and `sexualization` (637). Raw tables are never modified; cleaned versions go through the `tables` dict.
 
-**Overall verdict:** the dataset is in good shape. The tables are complete and consistent, with one wrong row. The real limits are not errors but **coverage and subjectivity** (see section 3).
+**Overall verdict:** the dataset is in good shape. The tables are complete and consistent, with one wrong row and two possible release-date errors found through the Steam merge (section 4). The real limits are not errors but **coverage and subjectivity** (see section 3).
 
 ---
 
@@ -59,3 +59,17 @@ These are limits of the data or choices that stay open. None can be fixed by cle
 | **Yearly trend** | Each year rests on 12 to 38 women and 0 to 8 sexualized women. | 3-year pooled rolling window, raw line shown beside it; it shows a direction only. |
 | **`Team_percentage` outliers: kept** (5 games above the 36.9% fence: 43%, 50%, 60%, 67%, 67%) | They are real games with unusually balanced teams, not errors, and the most informative cases for angle B. Removing them would leave 59 games. The IQR rule over-flags here because the box is squashed at 0% (Q1 = median = 0%, Q3 = 14.75%). | Kept in all analyses; we report the median and the 0% vs >0% split instead of the mean. The notebook's *Exploración* cell still says "provisional"; the decision is now confirmed and that word should be removed. |
 | **What `Total_team` counts is not defined** | The metadata does not say whether it counts credits, core team or studio. | Not used alone; only as a share (`Team_percentage`). |
+
+---
+
+## 4. Possible dubious data found while merging the second source (Steam)
+
+Found when the Steam release years were compared with `Release_year` (notebook, section *Enrichment: a second data source*). Both are **possible** errors: we cannot confirm them from the data alone, so nothing was changed.
+
+| Game | What the data says | What Steam says | Why it matters | What we do |
+|---|---|---|---|---|
+| **Far Cry 3** (`FC3`) | `Release` = 2019-11 | 2012 | That looks like a data error in the original table. The game has 14 characters (3 women, 2 sexualized), so it sits in the wrong year in the time trend (2019 has 7 games). | Kept as is; the table is the author's. Read the 2019 point of the yearly trend with this in mind. |
+| **Call of Duty: Modern Warfare** (`CODMW`) | `Release` = 2019-10 | The matched Steam page is dated 2023 | It matched a Steam page dated 2023, against 2019 in the data. Either the Steam page is a later listing of the same game or the match is not the same game. | Kept in the analysis (6 characters, 1 woman, none sexualized); its Steam numbers should be read with caution. |
+
+Not a data problem: for many other games Steam dates are later than ours (for example God of War 2018 → 2022, Journey 2012 → 2020) because the PC version came years after the console release.
+
