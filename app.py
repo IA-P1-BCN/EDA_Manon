@@ -77,7 +77,15 @@ def grouped_bar(data: pd.DataFrame, x: str, title: str, y_label: str, x_label: s
 
 
 def show(fig):
-    st.plotly_chart(fig, width="stretch")
+    """Draw a chart that only reacts to hover/tap: no zoom, pan, drag, toolbar or legend toggling.
+
+    Touch screens would otherwise zoom or move the chart while the reader scrolls the page.
+    """
+    fig.update_xaxes(fixedrange=True)
+    fig.update_yaxes(fixedrange=True)
+    fig.update_layout(dragmode=False, legend_itemclick=False, legend_itemdoubleclick=False)
+    st.plotly_chart(fig, width="stretch",
+                    config={"displayModeBar": False, "scrollZoom": False, "doubleClick": False})
 
 
 # ----------------------------------------------------------------------------- page
