@@ -1,5 +1,7 @@
 # 🎮 Gender Representation in Video Games: an EDA
 
+![Illustration of women playing video games together on a sofa, from PlayStation's International Women's Day artwork](docs/images/banner-women-gamers.png)
+
 Exploratory data analysis of how women and men are portrayed in 64 top-selling or top-rated video games (2012–2022). Bootcamp project (Factoría F5 Madrid, IA School). We play the data team of a consultancy; the deliverables are a clean dataset, a documented notebook and a short executive report for a non-technical reader.
 
 📄 **Executive report (3 pages):** [`docs/Women in Video Games What the Data Shows.pdf`](docs/Women%20in%20Video%20Games%20What%20the%20Data%20Shows.pdf)
@@ -92,6 +94,7 @@ They were written after the functions, except for `validate_tables`, which was b
     ├── Women in video games what the data shows.pptx  # 5-minute presentation
     ├── data-dictionary.md                        # tables and columns
     ├── data-quality.md                           # what was missing, corrected, still open
+    ├── images/                                   # README banner
     ├── research-questions.md                     # Q1–Q3 and the angles
     ├── notes-for-later.md                        # drafts and loose ends
     ├── Metadata- Gender Representation in Video Games.pdf
@@ -102,7 +105,7 @@ They were written after the functions, except for `validate_tables`, which was b
 
 1. **📥 Data loading:** download, structure and descriptive statistics of the three tables.
 2. **🔍 Exploración:** missing values, duplicates, outliers and dubious data (problems are found here and treated in Limpieza).
-3. **🧹 Limpieza:** each cleaning choice is written as a `⚖️ Decision / Why`: drop or rename columns, fix types, correct one inconsistent row, and create six new variables, plus Steam popularity from the second source (`Is_sexualized`, `Has_female_team`, `Team_group`, `Role_tier`, `Share_women`, `Share_sexualized`).
+3. **🧹 Limpieza:** each cleaning choice is written as a `⚖️ Decision / Why`: drop or rename columns, fix types, correct one inconsistent row, and create seven new variables (`Is_sexualized`, `Has_female_team`, `Team_group`, `Role_tier`, `Share_women`, `Share_sexualized`, `Region`), then add Steam popularity from the second source.
 4. **📊 Análisis:** univariate and bivariate analysis, group summaries, a time trend and a game-level correlation heatmap.
 5. **📝 Conclusiones:** the answers to Q1–Q3.
 
