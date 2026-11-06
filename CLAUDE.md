@@ -54,6 +54,7 @@ Notebook conventions already established (match them when suggesting code):
 - Raw tables stay untouched; cleaned versions go through the `tables` dict (`games`, `characters`, `sexualization`).
 - Column naming: `Capitalized_with_underscores` (e.g. `Female_team`, `Damsel_in_distress`). Note the raw `"Metacritic "` column has a **trailing space**.
 - Plot defaults: `sns.set_style("whitegrid")`, `figsize=(10, 6)`. Charts need a title, named axes, legend when needed.
+- **Seaborn is the base; plotly only where hover helps** (e.g. showing `n` on small groups). Seaborn renders everywhere (GitHub preview, report export); plotly charts can show blank in GitHub's viewer and need `kaleido` to export. Plotly charts also need a title and named axes.
 - Always show `n` next to percentages (small dataset, small groups).
 - Put a heading above every table: `display(Markdown("**…**"))` before `display(df)`, so the reader knows what each table is. Compact tables for reading use "x / n (p%)" text; keep a numeric version for charts.
 - Gender comparisons use Female vs Male only (Non-binary n=33 and Custom n=8 are too small); say so in the notebook.
@@ -106,6 +107,7 @@ gh project item-edit --project-id PVT_kwDOE6KzAs4BqIn4 --id <ITEM_ID> \
 - Windows + PowerShell/Git Bash. When printing notebook content with emoji from Python, set `PYTHONIOENCODING=utf8`.
 - `data/` is empty (raw files moved to `docs/raw data/`); the notebook downloads via `kagglehub`.
 - Kernel: the user sometimes runs the notebook on Colab, which drops sessions or runs out of free quota ("notebook controller is DISPOSED" = dead kernel, not a code bug). The local `.venv` kernel is the reliable one.
+- **Colab ships plotly 5.24.1, which draws plotly charts blank** (frame and hover work, nothing drawn, even a minimal `px.bar`). Fix: `%pip install -q plotly==7.1.0` (the `requirements.txt` pin) before any import, then restart the runtime. It does not persist between Colab sessions.
 - To check the notebook without their kernel: run its code cells in a script with `.venv/Scripts/python.exe` (matplotlib `Agg` backend); keep the script in the scratchpad.
 
 ## 📝 Git
