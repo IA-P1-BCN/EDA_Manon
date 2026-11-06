@@ -5,16 +5,12 @@ Run with:  streamlit run app.py
 The cleaning itself lives in `src/cleaning.py` (board #24), shared with the notebook.
 This file only adds the labels the charts need.
 """
-from pathlib import Path
-
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from pipeline import find_raw_dir
 from src.cleaning import clean_all, read_raw_tables
-
-RAW_DIR = Path(__file__).parent / "docs" / "raw data"
-KAGGLE_DATASET = "br33sa/gender-representation-in-video-games"
 
 ROLE_LABELS = {
     "PA": "Protagonist", "DA": "Deuteragonist", "MA": "Main antagonist",
@@ -28,18 +24,10 @@ COLORS = {"Female": "#c0504d", "Male": "#4a6fa5"}
 
 
 # ----------------------------------------------------------------------------- data
-def _raw_dir() -> Path:
-    """Local copy of the CSVs if present, otherwise download them with kagglehub."""
-    if (RAW_DIR / "games.grivg.csv").exists():
-        return RAW_DIR
-    import kagglehub
-    return Path(kagglehub.dataset_download(KAGGLE_DATASET))
-
-
 @st.cache_data(show_spinner="Loading data...")
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Return (games, characters) cleaned, with sexualization criteria merged into characters."""
-    tables = clean_all(read_raw_tables(_raw_dir()))
+    tables = clean_all(read_raw_tables(find_raw_dir()))
     games, sex = tables["games"], tables["sexualization"]
 
     # the charts group by plain text columns, not categories

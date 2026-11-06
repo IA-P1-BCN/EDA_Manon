@@ -37,6 +37,8 @@ Kaggle dataset [`br33sa/gender-representation-in-video-games`](https://www.kaggl
 
 Column meanings: [`docs/data-dictionary.md`](docs/data-dictionary.md).
 
+**Second source (enrichment):** the Kaggle [Steam Games Dataset](https://www.kaggle.com/datasets/fronkongames/steam-games-dataset) (`fronkongames`, 383 MB, downloaded by the notebook) is merged into `games` by title. It adds estimated owners and review counts for the 52 of 64 games that are on Steam (PC only: console exclusives such as Zelda or The Last of Us have no match). A sales dataset (VGChartz) was tested first and dropped: it stops in 2016 and matched only about 13 games.
+
 ## 🚀 How to run
 
 ```bash
@@ -57,7 +59,15 @@ streamlit run app.py
 
 It opens at `http://localhost:8501`. It reads the CSVs in `docs/raw data/` (or downloads them with `kagglehub`) and applies the same cleaning as the notebook (both use `src/cleaning.py`).
 
-**Tests** (32 tests of the cleaning functions, about a second):
+**Pipeline** (one command: raw CSVs → cleaning → checks → clean CSVs):
+
+```bash
+python pipeline.py
+```
+
+It reads `docs/raw data/` (or downloads the data with `kagglehub`), cleans it with `src/cleaning.py`, checks the result is consistent and saves `games.csv`, `characters.csv` and `sexualization.csv` in `data/clean/` (git-ignored; running it twice gives identical files). If a check fails it stops and saves nothing. Options: `--raw FOLDER`, `--out FOLDER`.
+
+**Tests** (36 tests of the cleaning functions and the pipeline, about a second):
 
 ```bash
 pytest
@@ -72,8 +82,9 @@ They were written after the functions, except for `validate_tables`, which was b
 ```
 ├── Gender Representation in Video Games.ipynb   # the analysis, top to bottom
 ├── app.py                                        # interactive Streamlit dashboard
-├── src/cleaning.py                               # reusable cleaning functions (notebook and dashboard)
-├── tests/test_cleaning.py                        # pytest tests of src/cleaning.py
+├── pipeline.py                                   # one-command pipeline: raw → clean CSVs in data/clean/
+├── src/cleaning.py                               # reusable cleaning functions (notebook, pipeline, dashboard)
+├── tests/                                        # pytest tests (cleaning functions and pipeline)
 ├── requirements.txt                              # pinned dependencies
 ├── CLAUDE.md                                     # working notes for the AI assistant
 └── docs/
@@ -91,7 +102,7 @@ They were written after the functions, except for `validate_tables`, which was b
 
 1. **📥 Data loading:** download, structure and descriptive statistics of the three tables.
 2. **🔍 Exploración:** missing values, duplicates, outliers and dubious data (problems are found here and treated in Limpieza).
-3. **🧹 Limpieza:** each cleaning choice is written as a `⚖️ Decision / Why`: drop or rename columns, fix types, correct one inconsistent row, and create six new variables (`Is_sexualized`, `Has_female_team`, `Team_group`, `Role_tier`, `Share_women`, `Share_sexualized`).
+3. **🧹 Limpieza:** each cleaning choice is written as a `⚖️ Decision / Why`: drop or rename columns, fix types, correct one inconsistent row, and create six new variables, plus Steam popularity from the second source (`Is_sexualized`, `Has_female_team`, `Team_group`, `Role_tier`, `Share_women`, `Share_sexualized`).
 4. **📊 Análisis:** univariate and bivariate analysis, group summaries, a time trend and a game-level correlation heatmap.
 5. **📝 Conclusiones:** the answers to Q1–Q3.
 
