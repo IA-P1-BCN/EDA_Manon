@@ -55,7 +55,7 @@ Open `Gender Representation in Video Games.ipynb` in Jupyter or VS Code, pick th
 streamlit run app.py
 ```
 
-It opens at `http://localhost:8501`. It reads the CSVs in `docs/raw data/` (or downloads them with `kagglehub`) and applies the same cleaning as the notebook.
+It opens at `http://localhost:8501`. It reads the CSVs in `docs/raw data/` (or downloads them with `kagglehub`) and applies the same cleaning as the notebook (both use `src/cleaning.py`).
 
 **On Google Colab:** the first code cell installs the plotly version pinned in `requirements.txt` (Colab's own plotly draws charts blank). Restart the runtime after it runs.
 
@@ -64,6 +64,7 @@ It opens at `http://localhost:8501`. It reads the CSVs in `docs/raw data/` (or d
 ```
 ├── Gender Representation in Video Games.ipynb   # the analysis, top to bottom
 ├── app.py                                        # interactive Streamlit dashboard
+├── src/cleaning.py                               # reusable cleaning functions (notebook and dashboard)
 ├── requirements.txt                              # pinned dependencies
 ├── CLAUDE.md                                     # working notes for the AI assistant
 └── docs/

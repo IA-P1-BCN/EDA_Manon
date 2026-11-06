@@ -2,15 +2,16 @@
 
 Run with:  streamlit run app.py
 
-The cleaning below mirrors the notebook's Limpieza + Feature engineering sections
-so the dashboard runs on its own. When the reusable cleaning module (#24) exists,
-replace `load_data()` with a call to it.
+The cleaning itself lives in `src/cleaning.py` (board #24), shared with the notebook.
+This file only adds the labels the charts need.
 """
 from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+
+from src.cleaning import clean_all, read_raw_tables
 
 RAW_DIR = Path(__file__).parent / "docs" / "raw data"
 KAGGLE_DATASET = "br33sa/gender-representation-in-video-games"
@@ -19,7 +20,6 @@ ROLE_LABELS = {
     "PA": "Protagonist", "DA": "Deuteragonist", "MA": "Main antagonist",
     "MC": "Main character", "SK": "Sidekick", "SC": "Secondary character",
 }
-ROLE_TIERS = {"PA": "Lead", "DA": "Major", "MC": "Major", "MA": "Major", "SK": "Minor", "SC": "Minor"}
 SIDE_LABELS = {"P": "Protagonist's side", "A": "Antagonist", "B": "Both sides"}
 CRITERIA = {"Sexualized_clothing": "Sexualized clothing", "Trophy": "Trophy",
             "Damsel_in_distress": "Damsel in distress", "Sexualized_cutscenes": "Sexualized cutscenes"}
@@ -39,42 +39,18 @@ def _raw_dir() -> Path:
 @st.cache_data(show_spinner="Loading data...")
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Return (games, characters) cleaned, with sexualization criteria merged into characters."""
-    raw = _raw_dir()
-    games = pd.read_csv(raw / "games.grivg.csv", encoding="utf-8-sig")
-    chars = pd.read_csv(raw / "characters.grivg.csv", encoding="utf-8-sig")
-    sex = pd.read_csv(raw / "sexualization.grivg.csv", encoding="utf-8-sig")
+    tables = clean_all(read_raw_tables(_raw_dir()))
+    games, sex = tables["games"], tables["sexualization"]
 
-    # games: drop empty / unused columns, fix names and types
-    games = games.drop(columns=["Unnamed: 27", "Sub-genre", "Publisher", "Platform", "PEGI", "Criteria",
-                                "Metacritic ", "Destructoid", "IGN", "GameSpot"], errors="ignore")
-    games = games.rename(columns={"female_team": "Female_team"})
-    games["Series"] = games["Series"].fillna("Standalone")
-    for col in ["Percentage_non_male", "Team_percentage"]:
-        games[col] = games[col].astype(str).str.rstrip("%").astype(float)
-    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    games["Release_year"] = 2000 + games["Release"].str[-2:].astype(int)
-    games["Release_month"] = games["Release"].str[:3].map({m: i for i, m in enumerate(months, 1)})
+    # the charts group by plain text columns, not categories
+    games["Team_group"] = games["Team_group"].astype(str)
 
-    # sexualization: rename, fix the PP_Son inconsistency (a Child flagged as damsel), recompute Total
-    sex = sex.rename(columns={"Damsel in Distress": "Damsel_in_distress",
-                              "Sexualized Cutscenes": "Sexualized_cutscenes"})
-    sex.loc[sex["Id"] == "PP_Son", "Damsel_in_distress"] = 0
-    sex["Total"] = sex[list(CRITERIA)].sum(axis=1)
-
-    # characters: drop Age, take the corrected score, add the engineered variables
-    chars = chars.drop(columns=["Age"]).drop(columns=["Sexualization"])
+    # characters: take the criteria columns from sexualization, then add the chart labels
+    chars = tables["characters"].drop(columns=["Sexualization"])
     chars = chars.merge(sex, on="Id", how="left").rename(columns={"Total": "Sexualization"})
-    chars["Is_sexualized"] = chars["Sexualization"] > 0
+    chars["Role_tier"] = chars["Role_tier"].astype(str)
     chars["Role"] = chars["Relevance"].map(ROLE_LABELS)
-    chars["Role_tier"] = chars["Relevance"].map(ROLE_TIERS)
     chars["Side_label"] = chars["Side"].map(SIDE_LABELS)
-
-    games["Has_female_team"] = games["Team_percentage"] > 0
-    games["Team_group"] = pd.cut(games["Team_percentage"], bins=[-1, 0, 25, 100],
-                                 labels=["0%", "1-25%", ">25%"]).astype(str)
-    by_game = chars.groupby("Game")
-    games["Share_women"] = games["Game_Id"].map((chars["Gender"] == "Female").groupby(chars["Game"]).mean() * 100)
-    games["Share_sexualized"] = games["Game_Id"].map(by_game["Is_sexualized"].mean() * 100)
     return games, chars
 
 
