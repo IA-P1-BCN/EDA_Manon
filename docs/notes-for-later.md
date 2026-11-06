@@ -64,7 +64,9 @@ Belongs to: Q2 and Q3 in `research-questions.md`. Definitions come from the offi
 
 Collected from the bivariate analysis. Numbers use the cleaned data (`PP_Son` corrected). Women and men only: Non-binary (33) and Custom (8) are left out of these comparisons, and the notebook should say so. These are drafts: confirm each number against the notebook outputs before writing the final answer. Always show `n`, and remember the games are top-selling or top-rated, so the results describe successful games.
 
-### Q1. How much more are women sexualized than men, in what ways, and does it depend on the role?
+### Q1. Are women more sexualized than men, in what ways, and does it depend on the role?
+
+(The question was reworded from "How much more…", which assumed the answer before looking at the data. The data answers yes, see below.)
 
 - **How much (answered so far):** 29 of 203 women (14.3%) have a score above 0, against 4 of 393 men (1.0%). That is about 14 times higher. Before the `PP_Son` fix it was 5 men (1.3%), about 11 times.
 - **Context:** only 34 of the 637 characters have a score above 0 (603 score 0), and nobody scores 4. The mean is misleading, so compare the share above 0. One Non-binary character is sexualized, and no Custom one.

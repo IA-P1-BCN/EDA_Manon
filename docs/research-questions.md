@@ -9,7 +9,7 @@ Joins: `C.Game = G.Game_Id` · `C.Id = S.Id`.
 
 | # | Question | Why it works |
 |---|---|---|
-| **Q1** | How much more are women sexualized than men, in what ways, and does it depend on the role they play (lead or secondary, age, species)? | The core of the project. 637 characters, a 0–4 score and 4 separate criteria. We compare women and men directly, see which criterion (clothing, cutscenes, trophy, damsel) drives the gap, and test whether the gap holds across roles. |
+| **Q1** | Are women more sexualized than men, in what ways, and does it depend on the role they play (lead or secondary, age, species)? | The core of the project. 637 characters, a 0–4 score and 4 separate criteria. We compare women and men directly, see which criterion (clothing, cutscenes, trophy, damsel) drives the gap, and test whether the gap holds across roles. |
 | **Q2** | What roles do women hold: lead, playable, romantic interest? | A clear comparison: Gender × Playable × Relevance × Romantic_Interest. Large enough sample, and easy for a non-technical CEO to read. |
 | **Q3** | Good vs. bad: are women allies, antagonists or main villains? | Gender × Side (and Relevance) is a clean 637-row comparison: who plays the hero, the ally, the villain? (Sexualization by side is covered in Q1.) |
 
@@ -25,7 +25,7 @@ Each of Q1–Q3 can be re-read through these three lenses:
 
 ---
 
-## Q1. How much more are women sexualized than men, in what ways, and does it depend on the role they play?
+## Q1. Are women more sexualized than men, in what ways, and does it depend on the role they play?
 
 Short version for the executive report: *Are women sexualized more than men, and what explains it?*
 
