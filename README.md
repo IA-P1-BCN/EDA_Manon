@@ -71,6 +71,7 @@ It opens at `http://localhost:8501`. It reads the CSVs in `docs/raw data/` (or d
     ├── Women in Video Games What the Data Shows.pdf   # executive report
     ├── Women in video games what the data shows.pptx  # 5-minute presentation
     ├── data-dictionary.md                        # tables and columns
+    ├── data-quality.md                           # what was missing, corrected, still open
     ├── research-questions.md                     # Q1–Q3 and the angles
     ├── notes-for-later.md                        # drafts and loose ends
     ├── Metadata- Gender Representation in Video Games.pdf
