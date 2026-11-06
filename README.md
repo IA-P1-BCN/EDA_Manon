@@ -6,6 +6,8 @@ Exploratory data analysis of how women and men are portrayed in 64 top-selling o
 
 🎤 **5-minute presentation (8 slides):** [`docs/Women in video games what the data shows.pptx`](docs/Women%20in%20video%20games%20what%20the%20data%20shows.pptx)
 
+🌐 **Live dashboard:** [women-representation-in-videogames-eda.streamlit.app](https://women-representation-in-videogames-eda.streamlit.app/) (the app may need a click to wake up if nobody visited recently)
+
 ## 🎯 Questions
 
 1. **Q1.** Are women more sexualized than men, in what ways, and does it depend on the role?
@@ -47,7 +49,7 @@ pip install -r requirements.txt
 
 Open `Gender Representation in Video Games.ipynb` in Jupyter or VS Code, pick the `.venv` kernel and use **Run All**. It was developed with Python 3.14.
 
-**Interactive dashboard** (filters by year, genre, country, team and role; every chart shows the counts on hover):
+**Interactive dashboard**, also [online](https://women-representation-in-videogames-eda.streamlit.app/) (filters by year, genre, country, team and role; every chart shows the counts on hover):
 
 ```bash
 streamlit run app.py
