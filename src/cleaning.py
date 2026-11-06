@@ -173,6 +173,38 @@ def add_region(games: pd.DataFrame) -> pd.DataFrame:
     return games
 
 
+# ----------------------------------------------------------------------------- validation
+def validate_tables(tables: dict[str, pd.DataFrame]) -> list[str]:
+    """Check the sexualization data is consistent. Returns the problems found (empty = all good).
+
+    The checks are the ones of the notebook's "Dubious data" section: the four criteria are
+    0 or 1, `Total` is their sum, both tables hold the same `Id`s, and
+    `characters.Sexualization` equals `sexualization.Total`. Needs the renamed columns.
+    """
+    characters, sexualization = tables["characters"], tables["sexualization"]
+    problems = []
+
+    n_not_binary = int((~sexualization[SEXUALIZATION_CRITERIA].isin([0, 1])).sum().sum())
+    if n_not_binary:
+        problems.append(f"{n_not_binary} criterion value(s) are not 0 or 1")
+
+    n_wrong_total = int((sexualization["Total"] != sexualization[SEXUALIZATION_CRITERIA].sum(axis=1)).sum())
+    if n_wrong_total:
+        problems.append(f"{n_wrong_total} row(s) where Total is not the sum of the criteria")
+
+    ids_characters, ids_sexualization = set(characters["Id"]), set(sexualization["Id"])
+    n_orphans = len(ids_characters ^ ids_sexualization)
+    if n_orphans:
+        problems.append(f"{n_orphans} Id(s) found in only one of characters / sexualization")
+
+    total_by_id = sexualization.set_index("Id")["Total"]
+    n_different = int((characters["Sexualization"] != characters["Id"].map(total_by_id)).sum())
+    if n_different:
+        problems.append(f"{n_different} character(s) whose Sexualization differs from Total")
+
+    return problems
+
+
 # ----------------------------------------------------------------------------- the whole chain
 def clean_all(raw: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
     """Run every cleaning and feature step in the notebook's order.
