@@ -4,6 +4,8 @@ Exploratory data analysis of how women and men are portrayed in 64 top-selling o
 
 📄 **Executive report (3 pages):** [`docs/Women in Video Games What the Data Shows.pdf`](docs/Women%20in%20Video%20Games%20What%20the%20Data%20Shows.pdf)
 
+🎤 **5-minute presentation (8 slides):** [`docs/Women in video games what the data shows.pptx`](docs/Women%20in%20video%20games%20what%20the%20data%20shows.pptx)
+
 ## 🎯 Questions
 
 1. **Q1.** Are women more sexualized than men, in what ways, and does it depend on the role?
@@ -64,6 +66,7 @@ It opens at `http://localhost:8501`. It reads the CSVs in `docs/raw data/` (or d
 ├── CLAUDE.md                                     # working notes for the AI assistant
 └── docs/
     ├── Women in Video Games What the Data Shows.pdf   # executive report
+    ├── Women in video games what the data shows.pptx  # 5-minute presentation
     ├── data-dictionary.md                        # tables and columns
     ├── research-questions.md                     # Q1–Q3 and the angles
     ├── notes-for-later.md                        # drafts and loose ends
