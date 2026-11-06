@@ -98,7 +98,7 @@ gh project item-edit --project-id PVT_kwDOE6KzAs4BqIn4 --id <ITEM_ID> \
 - Games are top-selling/top-rated 2012–2022 → results describe **successful games**, not the industry.
 - Angles B (team mix) and C (country) compare games, so group characters by game first.
 - Known data findings so far (see notebook for evidence): `Unnamed: 27` empty column; `Avg_Reviews` reliable (0.1 rounding diffs only); one inconsistent row (character `PP_Son`, a Child flagged `Damsel_in_distress`, corrected in Limpieza); `Series` NaN means "no series" (→ `"Standalone"`); `Age` is dropped (words equal `Age_range`, numbers fall in the right range); `Team_percentage` is 0% in 36 of 64 games (skewed, compare 0% vs >0%); only 34 of 637 characters have a sexualization score above 0, so compare shares, not means; outliers are kept (real values, IQR is 0 for `Protagonist` and `Sexualization`).
-- Deliverables outstanding from the brief: executive report (1–2 pages, non-technical), `README.md` (data source, install, how to run), `requirements.txt`.
+- Deliverables: the executive report is done (`docs/Women in Video Games What the Data Shows.pdf`, 3 pages, 4 findings + recommendations for studios, written in Claude Docs and exported; audience = an advocacy organisation like Women in Games, no screenshots of game characters). Still outstanding: `README.md` (data source, install, how to run) and a final check of `requirements.txt`.
 
 ## ⚙️ Environment
 
