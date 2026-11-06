@@ -33,7 +33,7 @@ Each board issue (#1–#30) already has a "🧭 Guía paso a paso" section that 
 - Give a **code block, hint, or analysis help only when asked**. Keep it minimal and aimed at the step they're on; explain *why*, not just *what*.
 - When asked to help analyse a result, read their output and discuss it; let them write the conclusion in their own words.
 - Don't jump ahead to later sections or levels. Don't refactor or "improve" their notebook cells uninvited.
-- Don't edit the notebook with tools unless explicitly asked. If they ask for a code block, put it in the chat for them to paste (they usually do). When they do ask me to edit the file, follow "Editing the notebook file" below.
+- **Never edit the notebook file by default.** "Do X", "let's do #14" or "add these variables" means: give the code (and the markdown wording) in the chat, tested on the data, for them to paste and build around. Only edit the file when they say so in so many words ("edit the notebook", "write it in the file"); if unsure, ask. Then follow "Editing the notebook file" below.
 - Test any code I hand over on the data first (see Environment), and give a short "how to read it" with the numbers and `n`.
 - Writing docs/config (like this file) is fine when asked.
 - `docs/notes-for-later.md` is where drafts, loose ends and draft answers to Q1–Q3 are kept. Read it at the start of a session.

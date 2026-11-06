@@ -96,7 +96,5 @@ Collected from the bivariate analysis. Numbers use the cleaned data (`PP_Son` co
 
 ## 6. Other loose ends
 
-- **Stale comment in the notebook:** the Findings under *Gender & Sexualization* say women are "roughly 11 times" more sexualized. That was before the `PP_Son` fix. With 4 men (1.0%) instead of 5 (1.3%), it is about 14 times.
-- Done: `Team_percentage` is now converted to float in *Limpieza* (board #3), and the analysis cell uses it directly. Its leftover comment `# Convert "11%" -> 11.0` and the duplicate `games = tables["games"]` line can be deleted.
+- The univariate *Team percentage* cell still has its leftover comment `# Convert "11%" -> 11.0` and a duplicate `games = tables["games"]` line (the conversion itself is done in *Limpieza*). They can be deleted.
 - `Genre` has tiny groups (Simulation n=1, Interactive Story n=4). Decide later whether to group them as "Other" or leave them out of genre comparisons.
-- `Gender`: Non-binary (33) and Custom (8) are small. Decide later whether to show them separately or note them aside in Q1–Q3.
