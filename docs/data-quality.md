@@ -57,7 +57,7 @@ These are limits of the data or choices that stay open. None can be fixed by cle
 | **`Team_group` cut at 25%** | A choice, not a rule from the data; the last group has only 8 games. | Stated in the notebook; results read as a direction. |
 | **`Share_women` / `Share_sexualized` on small casts** | Games have 2 to 27 characters (median 9), so one character moves the share by many points. | Shares shown with `n`. |
 | **Yearly trend** | Each year rests on 12 to 38 women and 0 to 8 sexualized women. | 3-year pooled rolling window, raw line shown beside it; it shows a direction only. |
-| **`Team_percentage` outliers: kept** (5 games above the 36.9% fence: 43%, 50%, 60%, 67%, 67%) | They are real games with unusually balanced teams, not errors, and the most informative cases for angle B. Removing them would leave 59 games. The IQR rule over-flags here because the box is squashed at 0% (Q1 = median = 0%, Q3 = 14.75%). | Kept in all analyses; we report the median and the 0% vs >0% split instead of the mean. The notebook's *Exploración* cell still says "provisional"; the decision is now confirmed and that word should be removed. |
+| **`Team_percentage` outliers: kept** (5 games above the 36.9% fence: 43%, 50%, 60%, 67%, 67%) | They are real games with unusually balanced teams, not errors, and the most informative cases for angle B. Removing them would leave 59 games. The IQR rule over-flags here because the box is squashed at 0% (Q1 = median = 0%, Q3 = 14.75%). | Kept in all analyses; we report the median and the 0% vs >0% split instead of the mean. |
 | **What `Total_team` counts is not defined** | The metadata does not say whether it counts credits, core team or studio. | Not used alone; only as a share (`Team_percentage`). |
 
 ---

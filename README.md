@@ -2,7 +2,7 @@
 
 ![Illustration of women playing video games together on a sofa, from PlayStation's International Women's Day artwork](docs/images/banner-women-gamers.png)
 
-Exploratory data analysis of how women and men are portrayed in 64 top-selling or top-rated video games (2012–2022). Bootcamp project (Factoría F5 Madrid, IA School). We play the data team of a consultancy; the deliverables are a clean dataset, a documented notebook and a short executive report for a non-technical reader.
+Exploratory data analysis of how women and men are portrayed in 64 top-selling or top-rated video games (2012–2022). Bootcamp project (Factoría F5 Madrid, IA School). 
 
 📄 **Executive report (3 pages):** [`docs/Women in Video Games What the Data Shows.pdf`](docs/Women%20in%20Video%20Games%20What%20the%20Data%20Shows.pdf)
 
@@ -96,7 +96,6 @@ They were written after the functions, except for `validate_tables`, which was b
     ├── data-quality.md                           # what was missing, corrected, still open
     ├── images/                                   # README banner
     ├── research-questions.md                     # Q1–Q3 and the angles
-    ├── notes-for-later.md                        # drafts and loose ends
     ├── Metadata- Gender Representation in Video Games.pdf
     └── raw data/                                 # local copy of the CSVs
 ```
