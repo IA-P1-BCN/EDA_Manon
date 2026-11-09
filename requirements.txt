@@ -1,4 +1,5 @@
 asttokens==3.0.2
+attrs==26.1.0
 certifi==2026.10.23
 charset-normalizer==3.5.2
 colorama==0.4.6
@@ -7,6 +8,7 @@ contourpy==1.4.0
 cycler==0.12.1
 debugpy==1.8.22
 executing==2.3.0
+fastjsonschema==2.22.3
 fonttools==4.68.0
 idna==3.20
 iniconfig==2.3.1
@@ -15,16 +17,19 @@ ipython==9.18.1
 ipython_pygments_lexers==1.1.1
 ipywidgets==8.1.9
 jedi==0.20.1
+jsonschema-specifications==2025.9.1
+jsonschema==4.26.0
 jupyter_client==8.10.0
 jupyter_core==5.9.1
 jupyterlab_widgets==3.0.17
 kagglehub==1.0.3
 kagglesdk==0.1.38
 kiwisolver==1.5.1
-matplotlib==3.11.2
 matplotlib-inline==0.2.2
+matplotlib==3.11.2
 missingno==0.5.2
 narwhals==2.28.0
+nbformat==5.11.1
 nest-asyncio2==1.7.4
 numpy==2.5.4
 packaging==26.3
@@ -33,8 +38,8 @@ parso==0.8.7
 pillow==13.0.0
 platformdirs==4.14.4
 plotly==7.1.0
-prompt_toolkit==3.0.53
 pluggy==1.7.0
+prompt_toolkit==3.0.53
 protobuf==7.36.2
 psutil==7.2.2
 pure_eval==0.2.4
@@ -44,7 +49,9 @@ pytest==9.2.0
 python-dateutil==4.0.0
 PyYAML==6.0.3
 pyzmq==27.3.0
+referencing==0.37.0
 requests==2.34.2
+rpds-py==2026.9.1
 scipy==1.18.1
 seaborn==0.13.2
 stack-data==0.6.3
